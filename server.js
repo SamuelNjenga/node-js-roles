@@ -3,11 +3,13 @@
 const express = require('express');
 const app = express()
 const {
-    users
+    users,
+    ROLE
 } = require('./data')
 const projectRouter = require('./routes/projects');
 const {
-    authUser
+    authUser,
+    authRole
 } = require('./basicAuth')
 
 app.use(express.json());
@@ -19,7 +21,7 @@ app.get('/', (req, res) => {
 app.get('/dashboard', authUser, (req, res) => {
     res.send('Dashboard Page')
 })
-app.get('/admin', (req, res) => {
+app.get('/admin', authUser, authRole(ROLE.ADMIN), (req, res) => {
     res.send('Admin Page')
 })
 

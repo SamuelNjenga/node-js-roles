@@ -1,6 +1,6 @@
-GET http://localhost:3000/dashboard  
+GET http://localhost:3000/admin  
 Content-Type: application/json
 
 {
-    "userId":7
+    "userId":1
 }
