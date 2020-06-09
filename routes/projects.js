@@ -4,9 +4,9 @@ const {
     projects
 } = require('../data')
 const {authUser} = require('../basicAuth')
-const {canViewProject} = require('../permissions/project')
-router.get('/', (req, res) => {
-    res.json(projects)
+const {canViewProject,scopedProjects} = require('../permissions/project')
+router.get('/',authUser, (req, res) => {
+    res.json(scopedProjects(req.user,projects))
 })
 router.get('/:projectId', setProject,authUser,authGetProject,(req, res) => {
     res.json(req.project)
