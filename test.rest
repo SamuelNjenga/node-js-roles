@@ -1,6 +1,6 @@
-GET http://localhost:3000/projects
+DELETE http://localhost:3000/projects/2
 Content-Type: application/json
 
 {
-    "userId":4
+    "userId":2
 }
