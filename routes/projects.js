@@ -3,11 +3,12 @@ const router = express.Router()
 const {
     projects
 } = require('../data')
-
+const {authUser} = require('../basicAuth')
+const {canViewProject} = require('../permissions/project')
 router.get('/', (req, res) => {
     res.json(projects)
 })
-router.get('/:projectId', (req, res) => {
+router.get('/:projectId', setProject,authUser,authGetProject,(req, res) => {
     res.json(req.project)
 })
 
@@ -20,4 +21,13 @@ function setProject(req, res, next) {
     }
     next()
 }
+
+function authGetProject(req,res,next){
+    if(!canViewProject(req.user,req.project)){
+        res.status(401)
+        return res.send('Not allowed')
+    }
+    next()
+}
+
 module.exports = router;
