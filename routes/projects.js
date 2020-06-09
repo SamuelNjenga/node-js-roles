@@ -1,11 +1,13 @@
 const express = require('express');
-const router  = express.Router()
-const {projects} = require('../data')
+const router = express.Router()
+const {
+    projects
+} = require('../data')
 
-router.get('/',(req,res) => {
+router.get('/', (req, res) => {
     res.json(projects)
 })
-router.get('/:projectId',(req,res) => {
+router.get('/:projectId', (req, res) => {
     res.json(req.project)
 })
 

@@ -1,1 +1,6 @@
-GET http://localhost:3000
+GET http://localhost:3000/dashboard  
+Content-Type: application/json
+
+{
+    "userId":7
+}
